@@ -11,10 +11,26 @@ const ProfilePage = () => {
       <form>
         <div className="space-y-12">
           <div className="border-b border-white/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-white">
-              Profile
-            </h2>
-
+            <div className="col-span-full">
+              <label
+                htmlFor="photo"
+                className="block text-sm font-medium leading-6 text-white"
+              >
+                Photo
+              </label>
+              <div className="mt-2 flex items-center gap-x-3">
+                <UserCircleIcon
+                  aria-hidden="true"
+                  className="h-12 w-12 text-gray-500"
+                />
+                <button
+                  type="button"
+                  className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+                >
+                  Change
+                </button>
+              </div>
+            </div>
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-3">
                 <label
@@ -72,27 +88,6 @@ const ProfilePage = () => {
                 <p className="mt-3 text-sm leading-6 text-gray-400">
                   Write a few sentences about yourself.
                 </p>
-              </div>
-
-              <div className="col-span-full">
-                <label
-                  htmlFor="photo"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  Photo
-                </label>
-                <div className="mt-2 flex items-center gap-x-3">
-                  <UserCircleIcon
-                    aria-hidden="true"
-                    className="h-12 w-12 text-gray-500"
-                  />
-                  <button
-                    type="button"
-                    className="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
-                  >
-                    Change
-                  </button>
-                </div>
               </div>
 
               <div className="col-span-full">
