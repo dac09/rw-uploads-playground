@@ -3,7 +3,7 @@ export const schema = gql`
     id: Int!
     firstName: String!
     lastName: String!
-    converPhoto: String
+    coverPhoto: String
     avatar: String
   }
 
@@ -12,22 +12,22 @@ export const schema = gql`
     profile(id: Int!): Profile @requireAuth
   }
 
-  input CreateProfileInput {
-    firstName: String!
-    lastName: String!
-    converPhoto: String
-    avatar: String
-  }
+  # input CreateProfileInput {
+  #   firstName: String!
+  #   lastName: String!
+  #   coverPhoto: String
+  #   avatar: String
+  # }
 
   input UpdateProfileInput {
     firstName: String
     lastName: String
-    converPhoto: String
+    coverPhoto: String
     avatar: String
   }
 
   type Mutation {
-    createProfile(input: CreateProfileInput!): Profile! @requireAuth
+    # createProfile(input: CreateProfileInput!): Profile! @requireAuth
     updateProfile(id: Int!, input: UpdateProfileInput!): Profile! @requireAuth
     deleteProfile(id: Int!): Profile! @requireAuth
   }
