@@ -1,5 +1,4 @@
 import { UserCircleIcon } from '@heroicons/react/20/solid'
-import { PhotoIcon } from '@heroicons/react/24/outline'
 import type { EditProfileById, UpdateProfileInput } from 'types/graphql'
 
 import type { RWGqlError } from '@redwoodjs/forms'
@@ -13,6 +12,8 @@ import {
   FileField,
 } from '@redwoodjs/forms'
 
+import { UploadDropZone } from 'src/components/UploadDropZone'
+
 type FormProfile = NonNullable<EditProfileById['profile']>
 
 interface ProfileFormProps {
@@ -24,6 +25,7 @@ interface ProfileFormProps {
 
 const ProfileForm = (props: ProfileFormProps) => {
   const onSubmit = (data: FormProfile) => {
+    console.log(data)
     props.onSave(data, props?.profile?.id)
   }
 
@@ -52,7 +54,7 @@ const ProfileForm = (props: ProfileFormProps) => {
           />
           <FileField
             name="avatar"
-            defaultValue={props.profile?.avatar}
+            // defaultValue={props.profile?.avatar}
             className="file:rounded-md file:bg-white/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white file:shadow-sm hover:file:bg-white/20"
             errorClassName="rw-input rw-input-error"
           />
@@ -92,7 +94,7 @@ const ProfileForm = (props: ProfileFormProps) => {
                 <TextField
                   name="lastName"
                   defaultValue={props.profile?.lastName}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="rw-input"
                   errorClassName="rw-input rw-input-error"
                   validation={{ required: true }}
                 />
@@ -109,9 +111,7 @@ const ProfileForm = (props: ProfileFormProps) => {
           >
             Cover photo
           </label>
-          <div className="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10">
-            <UploadDropZone />
-          </div>
+          <UploadDropZone name="coverPhoto" label="Cover photo" />
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
@@ -122,6 +122,7 @@ const ProfileForm = (props: ProfileFormProps) => {
             Cancel
           </button>
           <Submit
+            onSubmit={onSubmit}
             disabled={props.loading}
             className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
           >
@@ -134,27 +135,3 @@ const ProfileForm = (props: ProfileFormProps) => {
 }
 
 export default ProfileForm
-
-function UploadDropZone() {
-  return (
-    <div className="text-center">
-      <PhotoIcon
-        aria-hidden="true"
-        className="mx-auto h-12 w-12 text-gray-500"
-      />
-      <div className="mt-4 flex text-sm leading-6 text-gray-400">
-        <Label
-          name="coverPhoto"
-          className="relative cursor-pointer rounded-md bg-gray-900 font-semibold text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 hover:text-indigo-500"
-          errorClassName="rw-label rw-label-error"
-        >
-          Cover photo
-        </Label>
-        <p className="pl-1">or drag and drop</p>
-      </div>
-      <p className="text-xs leading-5 text-gray-400">
-        PNG, JPG, GIF up to 10MB
-      </p>
-    </div>
-  )
-}

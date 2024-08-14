@@ -17,7 +17,8 @@
     "@redwoodjs/router": "7.7.4",
     "@redwoodjs/web": "7.7.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "@redwoodjs/vite": "7.7.4",
