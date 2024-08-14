@@ -12,18 +12,20 @@ export const profile: QueryResolvers['profile'] = ({ id }) => {
   })
 }
 
-export const createProfile: MutationResolvers['createProfile'] = ({
-  input,
-}) => {
-  return db.profile.create({
-    data: input,
-  })
-}
+// export const createProfile: MutationResolvers['createProfile'] = ({
+//   input,
+// }) => {
+//   return db.profile.create({
+//     data: input,
+//   })
+// }
 
 export const updateProfile: MutationResolvers['updateProfile'] = ({
   id,
   input,
 }) => {
+  console.log(`👉 \n ~ input:`, input)
+
   return db.profile.update({
     data: input,
     where: { id },

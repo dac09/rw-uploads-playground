@@ -1,4 +1,5 @@
 export const schema = gql`
+  scalar File
   type Profile {
     id: Int!
     firstName: String!
@@ -22,8 +23,8 @@ export const schema = gql`
   input UpdateProfileInput {
     firstName: String
     lastName: String
-    coverPhoto: String
-    avatar: String
+    coverPhoto: File
+    avatar: File
   }
 
   type Mutation {
