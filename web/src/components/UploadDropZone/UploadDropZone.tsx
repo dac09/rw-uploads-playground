@@ -1,17 +1,25 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
-import { PhotoIcon } from '@heroicons/react/24/outline'
+import { ArrowPathIcon, PhotoIcon } from '@heroicons/react/24/outline'
 import { useDropzone } from 'react-dropzone'
 
-import { Controller, InputField, Label, useFormContext } from '@redwoodjs/forms'
+import { Label, useFormContext } from '@redwoodjs/forms'
+// import { toast } from '@redwoodjs/web/toast'
 
 export function UploadDropZone({ name, label }) {
-  const { control, setValue } = useFormContext()
+  // Is this this the right way with RHF? Or should we wrap in a Controller?
+  const { setValue, setError, clearErrors } = useFormContext()
 
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     onDrop: (files) => {
-      console.log('dropped files:', files)
+      clearErrors()
       setValue(name, files[0])
+    },
+    onDropRejected: (fileRejection) => {
+      // toast.error(fileRejection[0].errors[0].message)
+      setError(name, {
+        message: fileRejection[0].errors[0].message,
+      })
     },
     accept: {
       'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
@@ -25,23 +33,28 @@ export function UploadDropZone({ name, label }) {
 
     reader.onload = () => {
       setDataURI(reader.result.toString())
-      // Do something with the data URI
     }
 
     reader.readAsDataURL(file)
     return (
-      <li>
-        {file.name} - {file.size} bytes
+      <div>
         {dataURI && (
-          <img src={dataURI} className="max-h-60 rounded" alt={file.name} />
+          <div className="group relative">
+            <img src={dataURI} className="max-h-60 rounded" alt={file.name} />
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <ArrowPathIcon className="mx-auto h-12 w-12 text-gray-500" />
+            </div>
+          </div>
         )}
-      </li>
+        <p className="my-2 text-sm text-slate-500">
+          {file.name} - {file.size} bytes
+        </p>
+      </div>
     )
   }
 
   return (
     <div
-      id="droppy"
       {...getRootProps()}
       className="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10"
     >

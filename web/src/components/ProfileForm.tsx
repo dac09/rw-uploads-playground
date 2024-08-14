@@ -64,47 +64,51 @@ const ProfileForm = (props: ProfileFormProps) => {
 
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-3">
-            <Label
-              name="firstName"
-              className="block text-sm font-medium leading-6 text-white"
-              errorClassName="rw-label rw-label-error"
-            >
-              First name
-            </Label>
-            <div className="mt-2">
-              <TextField
-                name="firstName"
-                defaultValue={props.profile?.firstName}
-                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                errorClassName="rw-input rw-input-error"
-                validation={{ required: true }}
-              />
+            <div className="grid grid-cols-2 gap-x-6">
+              <div>
+                <Label
+                  name="firstName"
+                  className="block text-sm font-medium leading-6 text-white"
+                  errorClassName="rw-label rw-label-error"
+                >
+                  First name
+                </Label>
+                <div className="mt-2">
+                  <TextField
+                    name="firstName"
+                    defaultValue={props.profile?.firstName}
+                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                  />
 
-              <FieldError name="firstName" className="rw-field-error" />
-            </div>
-            <div className="sm:col-span-3">
-              <Label
-                name="lastName"
-                className="block text-sm font-medium leading-6 text-white"
-                errorClassName="rw-label rw-label-error"
-              >
-                Last name
-              </Label>
-              <div className="mt-2">
-                <TextField
+                  <FieldError name="firstName" className="rw-field-error" />
+                </div>
+              </div>
+              <div>
+                <Label
                   name="lastName"
-                  defaultValue={props.profile?.lastName}
-                  className="rw-input"
-                  errorClassName="rw-input rw-input-error"
-                  validation={{ required: true }}
-                />
+                  className="block text-sm font-medium leading-6 text-white"
+                  errorClassName="rw-label rw-label-error"
+                >
+                  Last name
+                </Label>
+                <div className="mt-2">
+                  <TextField
+                    name="lastName"
+                    defaultValue={props.profile?.lastName}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                  />
 
-                <FieldError name="lastName" className="rw-field-error" />
+                  <FieldError name="lastName" className="rw-field-error" />
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-span-full">
+        <div className="col-span-2">
           <label
             htmlFor="cover-photo"
             className="block text-sm font-medium leading-6 text-white"
@@ -112,6 +116,7 @@ const ProfileForm = (props: ProfileFormProps) => {
             Cover photo
           </label>
           <UploadDropZone name="coverPhoto" label="Cover photo" />
+          <FieldError name="coverPhoto" className="rw-field-error" />
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
