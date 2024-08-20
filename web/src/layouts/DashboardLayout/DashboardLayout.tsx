@@ -18,6 +18,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 import { NavLink } from '@redwoodjs/router'
+import { Toaster } from '@redwoodjs/web/toast'
 
 const navigation = [
   { name: 'Profile', href: '#', icon: Cog6ToothIcon, current: true },
@@ -49,6 +50,8 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     ```
   */}
       <div>
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+
         <Dialog
           open={sidebarOpen}
           onClose={setSidebarOpen}
