@@ -1,15 +1,18 @@
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import { uploadsProcessors } from 'src/lib/db'
 
 export const profiles: QueryResolvers['profiles'] = () => {
   return db.profile.findMany()
 }
 
-export const profile: QueryResolvers['profile'] = ({ id }) => {
-  return db.profile.findUnique({
+export const profile: QueryResolvers['profile'] = async ({ id }) => {
+  const profile = await db.profile.findUnique({
     where: { id },
   })
+
+  return profile.withSignedUrl()
 }
 
 // export const createProfile: MutationResolvers['createProfile'] = ({
@@ -20,14 +23,17 @@ export const profile: QueryResolvers['profile'] = ({ id }) => {
 //   })
 // }
 
-export const updateProfile: MutationResolvers['updateProfile'] = ({
+export const updateProfile: MutationResolvers['updateProfile'] = async ({
   id,
   input,
 }) => {
-  console.log(`👉 \n ~ input:`, input)
+  const processedInput = await uploadsProcessors.processProfileUploads(input)
+
+  // This is a string 👇
+  // processedInput.avatar = '/DEFAULT_SAVE_PATH/generatedId.jpg'
 
   return db.profile.update({
-    data: input,
+    data: processedInput,
     where: { id },
   })
 }
