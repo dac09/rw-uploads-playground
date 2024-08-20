@@ -22,6 +22,12 @@ export default async () => {
     console.info(
       '\n  No seed data, skipping. See scripts/seed.ts to start seeding your database!\n'
     )
+    await db.profile.create({
+      data: {
+        firstName: 'Danny',
+        lastName: 'Choudhury',
+      },
+    })
   } catch (error) {
     console.error(error)
   }
