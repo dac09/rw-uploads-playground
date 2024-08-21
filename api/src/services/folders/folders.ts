@@ -27,10 +27,8 @@ export const updateFolder: MutationResolvers['updateFolder'] = async ({
   id,
   input,
 }) => {
-  console.log('Iput file', input.files)
   const processedInput = await fileListProcessor(input.files)
   const mappedFiles = processedInput.map((path) => ({ path }))
-  console.log(`👉 \n ~ mappedFiles:`, mappedFiles)
 
   return db.folder.update({
     data: {
