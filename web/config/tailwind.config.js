@@ -14,5 +14,15 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.hover-effect': {
+          '@apply hover:bg-gray-600 hover:shadow-md hover:text-green-500 transition-all duration-200':
+            {},
+        },
+      }
+      addUtilities(newUtilities, ['hover'])
+    },
+  ],
 }

@@ -7,6 +7,7 @@ import type {
 } from '@redwoodjs/web'
 
 import Folders from 'src/components/Folders'
+import NewFolderItem from 'src/components/NewFolderItem'
 
 export const QUERY: TypedDocumentNode<FoldersQuery, FoldersQueryVariables> =
   gql`
@@ -14,10 +15,9 @@ export const QUERY: TypedDocumentNode<FoldersQuery, FoldersQueryVariables> =
       folders {
         id
         name
-        # files {
-        #   id
-        #   location
-        # }
+        files {
+          id
+        }
       }
     }
   `
@@ -31,5 +31,10 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ folders }: CellSuccessProps<FoldersQuery>) => {
-  return <Folders folders={folders} />
+  return (
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <Folders folders={folders} />
+      <NewFolderItem />
+    </div>
+  )
 }

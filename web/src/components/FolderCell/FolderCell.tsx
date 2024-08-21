@@ -3,6 +3,7 @@ import type { FindFolderQuery, FindFolderQueryVariables } from 'types/graphql'
 import type {
   CellSuccessProps,
   CellFailureProps,
+  Cel,
   TypedDocumentNode,
 } from '@redwoodjs/web'
 
@@ -17,6 +18,7 @@ export const QUERY: TypedDocumentNode<
   query FindFolderQuery($id: Int!) {
     folder: folder(id: $id) {
       id
+      name
       files {
         id
         path
@@ -27,7 +29,9 @@ export const QUERY: TypedDocumentNode<
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = FolderUpload
+export const Empty = ({ folder }: { folder: FindFolderQuery['folder'] }) => (
+  <FolderUpload folderName={folder.name} id={folder.id} />
+)
 
 export const Failure = ({
   error,
@@ -48,12 +52,15 @@ export const Success = ({
         ))}
       </div>
       <hr className="my-6 flex border-gray-600" />
-      <FolderUpload id={folder.id} preamble="Add some more files" />
+      <FolderUpload
+        id={folder.id}
+        preamble="Add some more files"
+        folderName={folder.name}
+      />
     </div>
   )
 }
 
 export const isEmpty = ({ folder }: FindFolderQuery) => {
-  console.log(`👉 \n ~ folder:`, folder)
   return folder.files.length === 0
 }

@@ -1,12 +1,22 @@
 import { useState } from 'react'
 
-import { Form, Submit, useForm } from '@redwoodjs/forms'
+import { Form, Submit, useForm, TextField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { UploadDropZone } from '../UploadDropZone'
 
-export const FolderUpload = ({ id, preamble }) => {
+type FolderUploadProps = {
+  id: number
+  preamble?: string
+  folderName: string
+}
+
+export const FolderUpload = ({
+  id,
+  preamble,
+  folderName,
+}: FolderUploadProps) => {
   const UPDATE_FOLDER_MUTATION = gql`
     mutation UpdateFolderMutation($id: Int!, $input: UpdateFolderInput!) {
       updateFolder(id: $id, input: $input) {
@@ -39,8 +49,14 @@ export const FolderUpload = ({ id, preamble }) => {
 
   return (
     <div className="relative min-h-[200px]">
-      {preamble && <p className="text-sm text-gray-400">{preamble}</p>}
       <Form onSubmit={onSave} className="h-full">
+        <TextField
+          name="name"
+          placeholder={folderName || 'Enter folder name'}
+          className="bg-transparent text-2xl leading-6 text-white"
+          validation={{ required: true }}
+        />
+        {preamble && <p className="text-sm text-gray-400">{preamble}</p>}
         <UploadDropZone
           name="files"
           multiple

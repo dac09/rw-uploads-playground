@@ -1,9 +1,10 @@
 export const schema = gql`
+  ### NOTE! I'm calling it MyFile, so it doesn't clash with the File scalar
   type MyFile {
     id: Int!
     path: String!
-    folderId: Int!
-    folder: Folder!
+    folderId: Int
+    # folder: Folder
   }
 
   type Query {
@@ -16,14 +17,8 @@ export const schema = gql`
     folderId: Int!
   }
 
-  input UpdateFileInput {
-    path: File
-    folderId: Int
-  }
-
   type Mutation {
-    createFile(input: CreateFileInput!): File! @requireAuth
-    updateFile(id: Int!, input: UpdateFileInput!): File! @requireAuth
+    createFile(input: CreateFileInput!): MyFile! @requireAuth
     deleteFile(id: Int!): MyFile! @requireAuth
   }
 `
