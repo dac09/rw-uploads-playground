@@ -19,10 +19,10 @@ export const urlSigner = new UrlSigner({
   endpoint: '/signedUrl',
 })
 
-const { uploadsProcessors, prismaExtension } = setupUploads(
+const { uploadsProcessors, prismaExtension, fileListProcessor } = setupUploads(
   uploadConfig,
   storage,
   urlSigner
 )
 
-export { uploadsProcessors, prismaExtension }
+export { uploadsProcessors, prismaExtension, fileListProcessor }

@@ -5000,13 +5000,13 @@ __metadata:
 
 "@redwoodjs/uploads@file:./tarballs/redwoodjs-uploads.tgz::locator=root-workspace-0b6124%40workspace%3A.":
   version: 7.0.0
-  resolution: "@redwoodjs/uploads@file:./tarballs/redwoodjs-uploads.tgz#./tarballs/redwoodjs-uploads.tgz::hash=91b686&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@redwoodjs/uploads@file:./tarballs/redwoodjs-uploads.tgz#./tarballs/redwoodjs-uploads.tgz::hash=eca536&locator=root-workspace-0b6124%40workspace%3A."
   dependencies:
     "@redwoodjs/project-config": "npm:7.0.0"
     fs-extra: "npm:11.2.0"
     mime-types: "npm:2.1.35"
     ulid: "npm:2.3.0"
-  checksum: 10c0/a570bed1672a1e3cda2c8a5eb05ab8e917e07b9c55ca464ab91ec82124445a2e086a6861e07e2761bfa9cf67d618a4ee78cc36efc55da07404d8d16aa3d27605
+  checksum: 10c0/b1d723c5b27b7ffdf1fab39bbccb314382767f7638f9895388ed85cd4464403d0d553333cef6ac78baceb4fa96f01eb991963af2a96d1f30d7b3f5bba453c287
   languageName: node
   linkType: hard
 

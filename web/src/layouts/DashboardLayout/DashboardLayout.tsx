@@ -6,7 +6,11 @@ import {
   DialogPanel,
   TransitionChild,
 } from '@headlessui/react'
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import {
+  Bars3Icon,
+  FolderOpenIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/20/solid'
 import {
   ChartBarSquareIcon,
   Cog6ToothIcon,
@@ -17,12 +21,9 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 
-import { NavLink } from '@redwoodjs/router'
+import { NavLink, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
-const navigation = [
-  { name: 'Profile', href: '#', icon: Cog6ToothIcon, current: true },
-]
 const teams = [
   { id: 1, name: 'Planetaria', href: '#', initial: 'P', current: false },
   { id: 2, name: 'Protocol', href: '#', initial: 'P', current: false },
@@ -39,6 +40,18 @@ type DashboardLayoutProps = {
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const navigation = [
+    {
+      name: 'Profile',
+      href: routes.profile(),
+      icon: Cog6ToothIcon,
+    },
+    {
+      name: 'Folder',
+      href: routes.folderUpload(),
+      icon: FolderOpenIcon,
+    },
+  ]
   return (
     <>
       {/*
@@ -50,7 +63,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     ```
   */}
       <div>
-      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
 
         <Dialog
           open={sidebarOpen}

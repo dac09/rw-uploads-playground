@@ -6,14 +6,21 @@ import { useDropzone } from 'react-dropzone'
 import { Label, useFormContext } from '@redwoodjs/forms'
 // import { toast } from '@redwoodjs/web/toast'
 
-export function UploadDropZone({ name, label }) {
+export function UploadDropZone({ name, label, multiple, originalImgSrc }) {
   // Is this this the right way with RHF? Or should we wrap in a Controller?
   const { setValue, setError, clearErrors } = useFormContext()
 
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     onDrop: (files) => {
       clearErrors()
-      setValue(name, files[0])
+
+      if (multiple) {
+        setValue(name, files)
+      } else {
+        // When its not multiple, assume the first one from the list
+        // Because file inputs always return a FileList aka File[]
+        setValue(name, files[0])
+      }
     },
     onDropRejected: (fileRejection) => {
       // toast.error(fileRejection[0].errors[0].message)
@@ -24,8 +31,23 @@ export function UploadDropZone({ name, label }) {
     accept: {
       'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
     },
-    multiple: false,
+    multiple: multiple || false,
   })
+
+  const ImagePreview = ({ imgSrc }) => {
+    return (
+      <div>
+        {imgSrc && (
+          <div className="group relative">
+            <img src={imgSrc} className="max-h-60 rounded" alt="preview" />
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <ArrowPathIcon className="mx-auto h-12 w-12 text-gray-500" />
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
 
   const FilePreview = ({ file }) => {
     const reader = new FileReader()
@@ -62,6 +84,10 @@ export function UploadDropZone({ name, label }) {
         {acceptedFiles.map((file) => {
           return <FilePreview file={file} key={file.name} />
         })}
+
+        {!acceptedFiles.length && originalImgSrc && (
+          <ImagePreview imgSrc={originalImgSrc} />
+        )}
         {acceptedFiles.length === 0 && (
           <>
             <PhotoIcon

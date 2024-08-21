@@ -21,3 +21,16 @@ model Profile {
   coverPhoto String?
   avatar String?
 }
+
+model Folder {
+  id   Int     @id @default(autoincrement())
+  name String
+  files File[]
+}
+
+model File {
+  id   Int     @id @default(autoincrement())
+  path String
+  folderId Int
+  folder Folder @relation(fields: [folderId], references: [id])
+}

@@ -1,22 +1,21 @@
 import type { APIGatewayEvent, Context } from 'aws-lambda'
 
-import { logger } from 'src/lib/logger'
-import { urlSigner } from 'src/lib/uploads'
+import type { SignatureValidationArgs } from '@redwoodjs/uploads/signedUrl'
+
+import { urlSigner, storage } from 'src/lib/uploads'
 
 export const handler = async (event: APIGatewayEvent, _context: Context) => {
-  // logger.info(`${event.httpMethod} ${event.path}: signedUrl function`)
-  // const { s: signature, expiry, path } = event.queryStringParameters || {}
+  const fileToReturn = urlSigner.validateSignature(
+    event.queryStringParameters as SignatureValidationArgs
+  )
 
-  const fileToReturn = urlSigner.validateSignedUrl(event.path)
-  console.log(`👉 \n ~ fileToReturn:`, fileToReturn)
+  const { contents, type } = await storage.read(fileToReturn)
 
   return {
     statusCode: 200,
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': type,
     },
-    body: JSON.stringify({
-      data: 'signedUrl function',
-    }),
+    body: contents,
   }
 }

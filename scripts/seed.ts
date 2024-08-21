@@ -28,6 +28,12 @@ export default async () => {
         lastName: 'Choudhury',
       },
     })
+
+    await db.folder.create({
+      data: {
+        name: 'Folder One',
+      },
+    })
   } catch (error) {
     console.error(error)
   }

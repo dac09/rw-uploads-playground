@@ -70,13 +70,20 @@ const ProfileForm = (props: ProfileFormProps) => {
           </Label>
 
           <div className="mt-2 flex items-center gap-x-3">
-            <UserCircleIcon
-              aria-hidden="true"
-              className="h-12 w-12 text-gray-500"
-            />
+            {props.profile.avatar ? (
+              <img
+                alt="Avatar"
+                src={props.profile.avatar}
+                className="h-12 w-12 rounded-full"
+              />
+            ) : (
+              <UserCircleIcon
+                aria-hidden="true"
+                className="h-12 w-12 text-gray-500"
+              />
+            )}
             <FileField
               name="avatar"
-              // defaultValue={props.profile?.avatar}
               className="file:rounded-md file:bg-white/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white file:shadow-sm hover:file:bg-white/20"
               errorClassName="rw-input rw-input-error"
             />
@@ -137,7 +144,11 @@ const ProfileForm = (props: ProfileFormProps) => {
             >
               Cover photo
             </label>
-            <UploadDropZone name="coverPhoto" label="Cover photo" />
+            <UploadDropZone
+              name="coverPhoto"
+              label="Cover photo"
+              originalImgSrc={props.profile.coverPhoto}
+            />
             <FieldError name="coverPhoto" className="rw-field-error" />
           </div>
 
