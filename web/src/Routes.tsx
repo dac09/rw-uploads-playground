@@ -15,7 +15,7 @@ const Routes = () => {
   return (
     <Router>
       <Set wrap={DashboardLayout}>
-        <Route path="/folder-upload" page={FolderUploadPage} name="folderUpload" />
+        <Route path="/my-folders" page={MyFoldersPage} name="myFolders" />
         <Route path="/folder/{id:Int}" page={FolderPage} name="folder" />
         <Route path="/profile" page={ProfilePage} name="profile" />
       </Set>

@@ -11,10 +11,12 @@ export const folders: QueryResolvers['folders'] = () => {
   return db.folder.findMany()
 }
 
-export const folder: QueryResolvers['folder'] = ({ id }) => {
-  return db.folder.findUnique({
+export const folder: QueryResolvers['folder'] = async ({ id }) => {
+  const f = await db.folder.findUnique({
     where: { id },
   })
+
+  return f
 }
 
 export const createFolder: MutationResolvers['createFolder'] = ({ input }) => {
@@ -49,8 +51,23 @@ export const deleteFolder: MutationResolvers['deleteFolder'] = ({ id }) => {
   })
 }
 
+// @MARK: What's with the types here?
+// This succccksss....
 export const Folder: FolderRelationResolvers = {
-  files: (_obj, { root }) => {
-    return db.folder.findUnique({ where: { id: root?.id } }).files()
+  files: async (_obj, { root }) => {
+    // @MARK: Cannot do this because files is a relation
+    // https://github.com/prisma/prisma/issues/20091
+
+    // const files = await db.folder
+    //   .findUnique({ where: { id: root?.id } })
+    //   .files()
+
+    const files = await db.file.findMany({
+      where: {
+        folderId: root?.id,
+      },
+    })
+
+    return files.map((file) => file.withSignedUrl())
   },
 }

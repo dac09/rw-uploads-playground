@@ -24,12 +24,6 @@ import {
 import { NavLink, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
-const teams = [
-  { id: 1, name: 'Planetaria', href: '#', initial: 'P', current: false },
-  { id: 2, name: 'Protocol', href: '#', initial: 'P', current: false },
-  { id: 3, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -48,7 +42,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     },
     {
       name: 'Folder',
-      href: routes.folderUpload(),
+      href: routes.myFolders(),
       icon: FolderOpenIcon,
     },
   ]

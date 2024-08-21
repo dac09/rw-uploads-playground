@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import FolderUploadPage from './FolderUploadPage'
+import FileCard from './FileCard'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//   https://redwoodjs.com/docs/testing#testing-pages-layouts
+//    https://redwoodjs.com/docs/testing#testing-components
 
-describe('FolderUploadPage', () => {
+describe('FileCard', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<FolderUploadPage />)
+      render(<FileCard />)
     }).not.toThrow()
   })
 })

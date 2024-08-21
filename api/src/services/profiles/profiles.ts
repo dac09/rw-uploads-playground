@@ -29,8 +29,8 @@ export const updateProfile: MutationResolvers['updateProfile'] = async ({
   id,
   input,
 }) => {
+  console.log(`👉 \n ~ avatar type:`, input.avatar.type)
   const processedInput = await uploadsProcessors.processProfileUploads(input)
-  console.log(`👉 \n ~ processedInput:`, processedInput)
 
   // This is a string 👇
   // processedInput.avatar = '/DEFAULT_SAVE_PATH/generatedId.jpg'

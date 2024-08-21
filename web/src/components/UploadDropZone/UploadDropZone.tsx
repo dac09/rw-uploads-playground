@@ -4,26 +4,49 @@ import { ArrowPathIcon, PhotoIcon } from '@heroicons/react/24/outline'
 import { useDropzone } from 'react-dropzone'
 
 import { Label, useFormContext } from '@redwoodjs/forms'
-// import { toast } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
-export function UploadDropZone({ name, label, multiple, originalImgSrc }) {
+type UploadDropZoneProps = {
+  name: string
+  label: string
+  multiple: boolean
+  originalImgSrc?: string
+  reset: boolean
+}
+
+export function UploadDropZone({
+  name,
+  label,
+  multiple = false,
+  originalImgSrc,
+  reset,
+}: UploadDropZoneProps) {
   // Is this this the right way with RHF? Or should we wrap in a Controller?
   const { setValue, setError, clearErrors } = useFormContext()
+  const [filesToUpload, setFilesToUpload] = useState<File[]>([])
 
-  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+  if (reset) {
+    clearErrors()
+    // setFilesToUpload([])
+    // setValue(name, null)
+  }
+
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop: (files) => {
       clearErrors()
 
       if (multiple) {
         setValue(name, files)
+        setFilesToUpload(files)
       } else {
         // When its not multiple, assume the first one from the list
         // Because file inputs always return a FileList aka File[]
         setValue(name, files[0])
+        setFilesToUpload(files)
       }
     },
     onDropRejected: (fileRejection) => {
-      // toast.error(fileRejection[0].errors[0].message)
+      toast.error(fileRejection[0].errors[0].message)
       setError(name, {
         message: fileRejection[0].errors[0].message,
       })
@@ -31,7 +54,7 @@ export function UploadDropZone({ name, label, multiple, originalImgSrc }) {
     accept: {
       'image/*': ['.png', '.gif', '.jpeg', '.jpg'],
     },
-    multiple: multiple || false,
+    multiple,
   })
 
   const ImagePreview = ({ imgSrc }) => {
@@ -81,14 +104,14 @@ export function UploadDropZone({ name, label, multiple, originalImgSrc }) {
       className="mt-2 flex justify-center rounded-lg border border-dashed border-white/25 px-6 py-10"
     >
       <div className="text-center">
-        {acceptedFiles.map((file) => {
+        {filesToUpload.map((file) => {
           return <FilePreview file={file} key={file.name} />
         })}
 
-        {!acceptedFiles.length && originalImgSrc && (
+        {!filesToUpload.length && originalImgSrc && (
           <ImagePreview imgSrc={originalImgSrc} />
         )}
-        {acceptedFiles.length === 0 && (
+        {filesToUpload.length === 0 && (
           <>
             <PhotoIcon
               aria-hidden="true"

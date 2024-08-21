@@ -7,6 +7,9 @@ const uploadConfig: UploadsConfig = {
   profile: {
     fields: ['avatar', 'coverPhoto'],
   },
+  file: {
+    fields: ['path'],
+  },
 }
 
 export const storage = new FileSystemStorage({
