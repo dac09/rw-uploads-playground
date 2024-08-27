@@ -11,28 +11,19 @@ export const profile: QueryResolvers['profile'] = async ({ id }) => {
   const profile = await db.profile.findUnique({
     where: { id },
   })
-  console.log(`👉 \n ~ profile?.withSignedUrl():`, profile?.withSignedUrl())
 
-  // return profile
+  // Convert the avatar and coverPhoto fields to signed URLs
   return profile?.withSignedUrl()
 }
-
-// export const createProfile: MutationResolvers['createProfile'] = ({
-//   input,
-// }) => {
-//   return db.profile.create({
-//     data: input,
-//   })
-// }
 
 export const updateProfile: MutationResolvers['updateProfile'] = async ({
   id,
   input,
 }) => {
-  console.log(`👉 \n ~ avatar type:`, input.avatar.type)
+  console.log('Avatar input', input.avatar)
   const processedInput = await uploadsProcessors.processProfileUploads(input)
 
-  // This is a string 👇
+  // This becomes a string 👇
   // processedInput.avatar = '/DEFAULT_SAVE_PATH/generatedId.jpg'
 
   return db.profile.update({

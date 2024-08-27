@@ -8,9 +8,6 @@ import { emitLogLevels, handlePrismaLogging } from '@redwoodjs/api/logger'
 import { logger } from './logger'
 import { prismaExtension } from './uploads'
 
-/*
- * Instance of the Prisma Client
- */
 export const prismaClient = new PrismaClient({
   log: emitLogLevels(['info', 'warn', 'error']),
 })

@@ -26,7 +26,8 @@ export function UploadDropZone({
   const [filesToUpload, setFilesToUpload] = useState<File[]>([])
 
   if (reset) {
-    clearErrors()
+    // @TODO causes react errors... gotta figure this out
+    // clearErrors()
     // setFilesToUpload([])
     // setValue(name, null)
   }

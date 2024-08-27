@@ -41,6 +41,7 @@ export const FolderUpload = ({
     onError: (error) => {
       toast.error(error.message)
     },
+    refetchQueries: ['FindFolderQuery'],
   })
 
   const onSave = (input) => {
@@ -52,8 +53,9 @@ export const FolderUpload = ({
       <Form onSubmit={onSave} className="h-full">
         <TextField
           name="name"
+          defaultValue={folderName}
           placeholder={folderName || 'Enter folder name'}
-          className="bg-transparent text-2xl leading-6 text-white"
+          className="mb-6 mt-2 bg-transparent text-2xl leading-6 text-white"
           validation={{ required: true }}
         />
         {preamble && <p className="text-sm text-gray-400">{preamble}</p>}

@@ -13,15 +13,15 @@
   "dependencies": {
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
-    "@redwoodjs/forms": "7.7.4",
-    "@redwoodjs/router": "7.7.4",
-    "@redwoodjs/web": "7.7.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "@redwoodjs/forms": "8.0.0-canary.1345",
+    "@redwoodjs/router": "8.0.0-canary.1345",
+    "@redwoodjs/web": "8.0.0-canary.1345",
+    "react": "19.0.0-rc-8269d55d-20240802",
+    "react-dom": "19.0.0-rc-8269d55d-20240802",
     "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
-    "@redwoodjs/vite": "7.7.4",
+    "@redwoodjs/vite": "8.0.0-canary.1345",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10.4.20",

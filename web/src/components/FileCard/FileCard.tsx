@@ -36,7 +36,10 @@ const FileCard = ({ file, type }: FileCardProps) => {
 
   if (type === 'image') {
     return (
-      <div className="group relative flex flex-col items-center rounded-md border border-gray-600 p-2">
+      <div
+        className="group relative flex flex-col items-center rounded-md border border-gray-600 p-2"
+        key={`${file.id}-file`}
+      >
         <button onClick={() => setShowModal(true)}>
           <img
             src={file.path}

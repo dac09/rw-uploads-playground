@@ -45,9 +45,9 @@ export const Success = ({
   return (
     <div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        {folder.files.map((file, index) => (
+        {folder.files.map((file) => (
           <>
-            <FileCard key={index} file={file} type="image" />
+            <FileCard file={file} type="image" />
           </>
         ))}
       </div>

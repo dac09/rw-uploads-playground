@@ -1,5 +1,4 @@
-import { UploadsConfig } from '@redwoodjs/uploads'
-import { setupUploads } from '@redwoodjs/uploads'
+import { setupUploads, UploadsConfig } from '@redwoodjs/uploads'
 import { FileSystemStorage } from '@redwoodjs/uploads/FileSystemStorage'
 import { UrlSigner } from '@redwoodjs/uploads/signedUrl'
 
@@ -22,10 +21,10 @@ export const urlSigner = new UrlSigner({
   endpoint: '/signedUrl',
 })
 
-const { uploadsProcessors, prismaExtension, fileListProcessor } = setupUploads(
+const { uploadsProcessors, prismaExtension } = setupUploads(
   uploadConfig,
   storage,
   urlSigner
 )
 
-export { uploadsProcessors, prismaExtension, fileListProcessor }
+export { uploadsProcessors, prismaExtension }

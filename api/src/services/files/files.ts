@@ -7,14 +7,18 @@ import type {
 import { db } from 'src/lib/db'
 import { uploadsProcessors } from 'src/lib/uploads'
 
-export const files: QueryResolvers['files'] = () => {
-  return db.file.findMany()
+export const files: QueryResolvers['files'] = async () => {
+  const files = await db.file.findMany()
+
+  return files.map((file) => file.withSignedUrl())
 }
 
-export const file: QueryResolvers['file'] = ({ id }) => {
-  return db.file.findUnique({
+export const file: QueryResolvers['file'] = async ({ id }) => {
+  const file = await db.file.findUnique({
     where: { id },
   })
+
+  return file?.withSignedUrl()
 }
 
 export const createFile: MutationResolvers['createFile'] = async ({
