@@ -4972,12 +4972,12 @@ __metadata:
 
 "@redwoodjs/uploads@file:./tarballs/redwoodjs-uploads.tgz::locator=root-workspace-0b6124%40workspace%3A.":
   version: 7.0.0
-  resolution: "@redwoodjs/uploads@file:./tarballs/redwoodjs-uploads.tgz#./tarballs/redwoodjs-uploads.tgz::hash=a8512d&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@redwoodjs/uploads@file:./tarballs/redwoodjs-uploads.tgz#./tarballs/redwoodjs-uploads.tgz::hash=4f7cdf&locator=root-workspace-0b6124%40workspace%3A."
   dependencies:
     "@redwoodjs/project-config": "npm:7.0.0"
     mime-types: "npm:2.1.35"
     ulid: "npm:2.3.0"
-  checksum: 10c0/df1c8bcf09cef8f3459b3fcba17de080590fdb92c6c8376435725f55a09a9ab59d56c3564685ccb795f0d579c04abcc72430e6b16813cce64352825d3fab2eee
+  checksum: 10c0/4889ff7ad95fd5b1b978b4c889e2da1f81f91decb038d59be9f3d75551bfa6d84b5e485ecbe69801f15928e0c530214c32e2a7f83c09602cee03852b821f6897
   languageName: node
   linkType: hard
 

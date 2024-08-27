@@ -1,5 +1,6 @@
 export const schema = gql`
   scalar File
+
   type Profile {
     id: Int!
     firstName: String!

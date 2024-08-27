@@ -8,10 +8,10 @@ import { toast } from '@redwoodjs/web/toast'
 
 type UploadDropZoneProps = {
   name: string
-  label: string
-  multiple: boolean
+  label?: string
+  multiple?: boolean
   originalImgSrc?: string
-  reset: boolean
+  reset?: boolean
 }
 
 export function UploadDropZone({
@@ -112,7 +112,7 @@ export function UploadDropZone({
         {!filesToUpload.length && originalImgSrc && (
           <ImagePreview imgSrc={originalImgSrc} />
         )}
-        {filesToUpload.length === 0 && (
+        {filesToUpload.length === 0 && !originalImgSrc && (
           <>
             <PhotoIcon
               aria-hidden="true"

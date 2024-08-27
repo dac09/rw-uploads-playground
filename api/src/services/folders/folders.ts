@@ -70,8 +70,8 @@ export const Folder: FolderRelationResolvers = {
 
     return files.map((file) =>
       file.withSignedUrl({
-        expiry: EXPIRES_IN.days(1),
-        foo: 'bar',
+        // For demonstration!
+        expiresIn: EXPIRES_IN.days(15),
       })
     )
   },

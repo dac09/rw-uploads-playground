@@ -16,7 +16,15 @@ import { useBlocker } from '@redwoodjs/router'
 
 import { UploadDropZone } from 'src/components/UploadDropZone'
 
-type FormProfile = NonNullable<EditProfileById['profile']>
+//type FormProfile = NonNullable<EditProfileById['profile']>
+
+// Notice the new type here, we can't just reuse the Query type, which returns a string
+type FormProfile = {
+  avatar: FileList
+  firstName: string
+  lastName: string
+  coverPhoto: File
+}
 
 interface ProfileFormProps {
   profile?: EditProfileById['profile']
@@ -27,10 +35,11 @@ interface ProfileFormProps {
 
 const ProfileForm = (props: ProfileFormProps) => {
   const onSubmit = (data: FormProfile) => {
-    console.log(data)
+    const [avatarFile] = data.avatar
+
     const singleFileAvatar = {
       ...data,
-      avatar: data.avatar?.[0],
+      avatar: avatarFile,
     }
     props.onSave(singleFileAvatar, props?.profile?.id)
   }
@@ -144,6 +153,7 @@ const ProfileForm = (props: ProfileFormProps) => {
             >
               Cover photo
             </label>
+
             <UploadDropZone
               name="coverPhoto"
               label="Cover photo"

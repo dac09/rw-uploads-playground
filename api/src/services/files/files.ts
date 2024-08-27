@@ -1,8 +1,4 @@
-import type {
-  QueryResolvers,
-  MutationResolvers,
-  FileRelationResolvers,
-} from 'types/graphql'
+import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
 import { uploadsProcessors } from 'src/lib/uploads'
@@ -35,10 +31,4 @@ export const deleteFile: MutationResolvers['deleteFile'] = ({ id }) => {
   return db.file.delete({
     where: { id },
   })
-}
-
-export const File: FileRelationResolvers = {
-  folder: (_obj, { root }) => {
-    return db.file.findUnique({ where: { id: root?.id } }).folder()
-  },
 }

@@ -21,15 +21,20 @@ export const updateProfile: MutationResolvers['updateProfile'] = async ({
   input,
 }) => {
   console.log('Avatar input', input.avatar)
+
   const processedInput = await uploadsProcessors.processProfileUploads(input)
 
-  // This becomes a string 👇
-  // processedInput.avatar = '/DEFAULT_SAVE_PATH/generatedId.jpg'
+  // uploads/profile-avatar-01J6ACDPWAER8B1SAXPKQK5YA1.png
 
-  return db.profile.update({
+  // This becomes a string 👇
+  // processedInput.avatar = '/basePath/generatedId.jpg'
+
+  const profile = await db.profile.update({
     data: processedInput,
     where: { id },
   })
+
+  return profile.withSignedUrl()
 }
 
 export const deleteProfile: MutationResolvers['deleteProfile'] = ({ id }) => {
