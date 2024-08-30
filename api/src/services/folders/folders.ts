@@ -4,10 +4,10 @@ import type {
   FolderRelationResolvers,
 } from 'types/graphql'
 
-import { EXPIRES_IN } from '@redwoodjs/uploads/signedUrl'
+import { EXPIRES_IN } from '@redwoodjs/storage/UrlSigner'
 
 import { db } from 'src/lib/db'
-import { uploadsProcessors } from 'src/lib/uploads'
+import { filesToStorage } from 'src/lib/uploads'
 
 export const folders: QueryResolvers['folders'] = () => {
   return db.folder.findMany()
@@ -31,7 +31,7 @@ export const updateFolder: MutationResolvers['updateFolder'] = async ({
   id,
   input,
 }) => {
-  const processedInput = await uploadsProcessors.processFileList(input.files)
+  const processedInput = await filesToStorage.processFileList(input.files)
   const mappedFiles = processedInput.map((path) => ({ path }))
 
   return db.folder.update({
