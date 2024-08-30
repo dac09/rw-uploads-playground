@@ -95,6 +95,7 @@
     "react": "19.0.0-rc-8269d55d-20240802",
     "react-dom": "19.0.0-rc-8269d55d-20240802",
     "@redwoodjs/uploads": "./tarballs/redwoodjs-uploads.tgz",
-    "@redwoodjs/jobs": "./tarballs/redwoodjs-jobs.tgz"
+    "@redwoodjs/jobs": "./tarballs/redwoodjs-jobs.tgz",
+    "@redwoodjs/storage": "./tarballs/redwoodjs-storage.tgz"
   }
 }

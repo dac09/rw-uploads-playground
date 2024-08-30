@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "@redwoodjs/api": "8.0.0-canary.1345",
+    "@redwoodjs/api-server": "7.0.0",
     "@redwoodjs/graphql-server": "8.0.0-canary.1345",
-    "@redwoodjs/uploads": "8.0.0-canary.1345"
+    "@redwoodjs/storage": "8.0.0-canary.1345"
   }
 }

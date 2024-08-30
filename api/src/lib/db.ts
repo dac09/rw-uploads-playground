@@ -6,7 +6,7 @@ import { PrismaClient } from '@prisma/client'
 import { emitLogLevels, handlePrismaLogging } from '@redwoodjs/api/logger'
 
 import { logger } from './logger'
-import { prismaExtension } from './uploads'
+import { storagePrismaExtension } from './uploads'
 
 export const prismaClient = new PrismaClient({
   log: emitLogLevels(['info', 'warn', 'error']),
@@ -18,4 +18,4 @@ handlePrismaLogging({
   logLevels: ['info', 'warn', 'error'],
 })
 
-export const db = prismaClient.$extends(prismaExtension)
+export const db = prismaClient.$extends(storagePrismaExtension)

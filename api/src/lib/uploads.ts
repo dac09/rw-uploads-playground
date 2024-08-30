@@ -1,8 +1,8 @@
-import { setupUploads, UploadsConfig } from '@redwoodjs/uploads'
-import { FileSystemStorage } from '@redwoodjs/uploads/FileSystemStorage'
-import { UrlSigner } from '@redwoodjs/uploads/signedUrl'
+import { UploadsConfig, setupStorage } from '@redwoodjs/storage'
+import { FileSystemStorage } from '@redwoodjs/storage/FileSystemStorage'
+import { UrlSigner } from '@redwoodjs/storage/UrlSigner'
 
-const uploadConfig: UploadsConfig = {
+const uploadsConfig: UploadsConfig = {
   profile: {
     fields: ['avatar', 'coverPhoto'],
   },
@@ -11,7 +11,7 @@ const uploadConfig: UploadsConfig = {
   },
 }
 
-export const storage = new FileSystemStorage({
+export const fsStorage = new FileSystemStorage({
   baseDir: './uploads',
 })
 
@@ -21,10 +21,10 @@ export const urlSigner = new UrlSigner({
   endpoint: '/signedUrl',
 })
 
-const { uploadsProcessors, prismaExtension } = setupUploads(
-  uploadConfig,
-  storage,
-  urlSigner
-)
+const { filesToStorage, storagePrismaExtension } = setupStorage({
+  uploadsConfig,
+  storageAdapter: fsStorage,
+  urlSigner,
+})
 
-export { uploadsProcessors, prismaExtension }
+export { filesToStorage, storagePrismaExtension }
