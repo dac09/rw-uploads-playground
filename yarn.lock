@@ -4894,12 +4894,12 @@ __metadata:
 
 "@redwoodjs/storage@file:./tarballs/redwoodjs-storage.tgz::locator=root-workspace-0b6124%40workspace%3A.":
   version: 7.0.0
-  resolution: "@redwoodjs/storage@file:./tarballs/redwoodjs-storage.tgz#./tarballs/redwoodjs-storage.tgz::hash=e2fd46&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@redwoodjs/storage@file:./tarballs/redwoodjs-storage.tgz#./tarballs/redwoodjs-storage.tgz::hash=6b1eb7&locator=root-workspace-0b6124%40workspace%3A."
   dependencies:
     "@redwoodjs/project-config": "npm:7.0.0"
     mime-types: "npm:2.1.35"
     ulid: "npm:2.3.0"
-  checksum: 10c0/0ade90cb577785656593eafedc883dd2bfe52a2326b60b670150d3997cec306cde490ee67227d03884bbdd5054b9bc4b53a62774fb4d6b9b6dfc9056ca81067f
+  checksum: 10c0/39ebd621d46d313e8d15eecbe311e11788595e257cd82dee1613e89605d1898398f623fe4d1b3a4e7b7691ab669eba8f05af360254558c23547407c24ce3e256
   languageName: node
   linkType: hard
 

@@ -7,7 +7,7 @@ import type {
 import { EXPIRES_IN } from '@redwoodjs/storage/UrlSigner'
 
 import { db } from 'src/lib/db'
-import { filesToStorage } from 'src/lib/uploads'
+import { saveFiles } from 'src/lib/uploads'
 
 export const folders: QueryResolvers['folders'] = () => {
   return db.folder.findMany()
@@ -31,7 +31,7 @@ export const updateFolder: MutationResolvers['updateFolder'] = async ({
   id,
   input,
 }) => {
-  const processedInput = await filesToStorage.processFileList(input.files)
+  const processedInput = await saveFiles.inList(input.files)
   const mappedFiles = processedInput.map((path) => ({ path }))
 
   return db.folder.update({

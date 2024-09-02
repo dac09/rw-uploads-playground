@@ -1,7 +1,7 @@
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { filesToStorage } from 'src/lib/uploads'
+import { saveFiles } from 'src/lib/uploads'
 
 export const profiles: QueryResolvers['profiles'] = () => {
   return db.profile.findMany()
@@ -22,12 +22,11 @@ export const updateProfile: MutationResolvers['updateProfile'] = async ({
 }) => {
   console.log('Avatar input', input.avatar)
 
-  const processedInput = await filesToStorage.forProfile(input, {})
-
-  // uploads/profile-avatar-01J6ACDPWAER8B1SAXPKQK5YA1.png
+  const processedInput = await saveFiles.forProfile(input, {})
 
   // This becomes a string 👇
-  // processedInput.avatar = '/basePath/generatedId.jpg'
+  // processedInput.avatar =
+  // '/basePath/uploads/profile-avatar-01J6ACDPWAER8B1SAXPKQK5YA1.png'
 
   const profile = await db.profile.update({
     data: processedInput,

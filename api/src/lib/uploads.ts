@@ -21,10 +21,10 @@ export const urlSigner = new UrlSigner({
   endpoint: '/signedUrl',
 })
 
-const { filesToStorage, storagePrismaExtension } = setupStorage({
+const { saveFiles, storagePrismaExtension } = setupStorage({
   uploadsConfig,
   storageAdapter: fsStorage,
   urlSigner,
 })
 
-export { filesToStorage, storagePrismaExtension }
+export { saveFiles, storagePrismaExtension }
