@@ -1,7 +1,7 @@
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { uploadsProcessors } from 'src/lib/uploads'
+import { saveFiles } from 'src/lib/uploads'
 
 export const files: QueryResolvers['files'] = async () => {
   const files = await db.file.findMany()
@@ -20,7 +20,7 @@ export const file: QueryResolvers['file'] = async ({ id }) => {
 export const createFile: MutationResolvers['createFile'] = async ({
   input,
 }) => {
-  const processedInput = await uploadsProcessors.processFileUploads(input)
+  const processedInput = await saveFiles.forFile(input)
 
   return db.file.create({
     data: processedInput,
