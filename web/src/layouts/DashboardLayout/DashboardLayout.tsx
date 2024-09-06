@@ -9,6 +9,7 @@ import {
 import {
   Bars3Icon,
   FolderOpenIcon,
+  HomeIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/20/solid'
 import {
@@ -35,6 +36,11 @@ type DashboardLayoutProps = {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigation = [
+    {
+      name: 'Basic Example',
+      href: routes.landing(),
+      icon: HomeIcon,
+    },
     {
       name: 'Profile',
       href: routes.profile(),

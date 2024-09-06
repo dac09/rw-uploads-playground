@@ -16,7 +16,7 @@ export const fsStorage = new FileSystemStorage({
 })
 
 export const urlSigner = new UrlSigner({
-  secret: process.env.UPLOADS_SECRET,
+  secret: 'xxx_my_sekret',
   endpoint: '/signedUrl',
 })
 
