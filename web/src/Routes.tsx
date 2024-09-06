@@ -15,6 +15,7 @@ const Routes = () => {
   return (
     <Router>
       <Set wrap={DashboardLayout}>
+        <Route path="/" page={LandingPage} name="landing" />
         <Route path="/my-folders" page={MyFoldersPage} name="myFolders" />
         <Route path="/folder/{id:Int}" page={FolderPage} name="folder" />
         <Route path="/profile" page={ProfilePage} name="profile" />
